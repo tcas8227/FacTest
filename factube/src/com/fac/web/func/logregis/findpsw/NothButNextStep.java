@@ -1,4 +1,4 @@
-package com.fac.web.func.logregis.login;
+package com.fac.web.func.logregis.findpsw;
 
 import java.util.concurrent.TimeUnit;
 
@@ -8,8 +8,8 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-//跳转找回密码页面,测试找回页
-public class LoginTurnFindpassw {
+//不输入手机号/邮箱，点击下一步重置密码
+public class NothButNextStep {
 	
 	private WebDriver driver;
 	private String baseUrl;
@@ -25,13 +25,17 @@ public class LoginTurnFindpassw {
 	} 
 	
 	@Test
-	public void Test()throws Exception{
+	public void TestPhone()throws Exception{
 		driver.get(baseUrl);
 		driver.findElement(By.linkText("登录")).click();
 		driver.findElement(By.xpath("//button[@class='btn btn-link']")).click();
 		Thread.sleep(4000);
-		String title=driver.findElement(By.xpath("//html/body/div[2]/div/div[2]/div/div/div/div[1]/h4")).getText();
-		assertEquals(title, "找回密码");
+		driver.findElement(By.xpath(".//*[@id='formInlineName']")).click();;
+		driver.findElement(By.xpath("//html/body/div[2]/div/div[2]/div/div/div/div[2]/form/button")).click();
+		String errormessage=driver.findElement(By.xpath("//html/body/div[2]/div/div[2]/div/div/div/div[2]/form/div[1]/label")).getText();
+		
+		assertEquals(errormessage, "手机/邮箱不能为空");
+		
 		}
 
 	@After
@@ -47,3 +51,4 @@ public class LoginTurnFindpassw {
 	}
 
 }
+
