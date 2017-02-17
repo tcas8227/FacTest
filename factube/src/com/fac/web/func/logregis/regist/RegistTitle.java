@@ -1,4 +1,4 @@
-package com.fac.web.func.logregis.login;
+package com.fac.web.func.logregis.regist;
 
 import java.util.concurrent.TimeUnit;
 
@@ -8,8 +8,8 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-//跳转找回密码页面,测试找回页
-public class LoginTurnFindpassw {
+//登陆页面标题
+public class RegistTitle {
 	
 	private WebDriver driver;
 	private String baseUrl;
@@ -25,14 +25,16 @@ public class LoginTurnFindpassw {
 	} 
 	
 	@Test
-	public void Test()throws Exception{
+	public void testCase() throws Exception{
+		
 		driver.get(baseUrl);
-		driver.findElement(By.linkText("登录")).click();
-		driver.findElement(By.xpath("//button[@class='btn btn-link']")).click();
-		Thread.sleep(4000);
-		String title=driver.findElement(By.xpath("//html/body/div[2]/div/div[2]/div/div/div/div[1]/h4")).getText();
-		assertEquals(title, "找回密码");
-		}
+		driver.findElement(By.linkText("注册")).click();
+		Thread.sleep(2000);
+		String title=driver.findElement(By.className("modal-title")).getText();
+		
+		assertEquals(title, "注册");
+		
+	}
 
 	@After
 	public void tearDown() throws Exception{

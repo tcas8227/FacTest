@@ -1,4 +1,5 @@
-package com.fac.web.func.logregis.login;
+package com.fac.web.func.logregis.regist;
+
 
 import java.util.concurrent.TimeUnit;
 
@@ -8,8 +9,8 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-//跳转找回密码页面,测试找回页
-public class LoginTurnFindpassw {
+//不输入手机号/邮箱，点击注册
+public class NothButRegist {
 	
 	private WebDriver driver;
 	private String baseUrl;
@@ -21,17 +22,19 @@ public class LoginTurnFindpassw {
 		driver=new ChromeDriver();
 		driver.manage().window().maximize();
 		baseUrl="http://www.factube.com/";
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	} 
 	
 	@Test
 	public void Test()throws Exception{
 		driver.get(baseUrl);
-		driver.findElement(By.linkText("登录")).click();
-		driver.findElement(By.xpath("//button[@class='btn btn-link']")).click();
-		Thread.sleep(4000);
-		String title=driver.findElement(By.xpath("//html/body/div[2]/div/div[2]/div/div/div/div[1]/h4")).getText();
-		assertEquals(title, "找回密码");
+		driver.findElement(By.linkText("注册")).click();
+		driver.findElement(By.xpath(".//*[@id='formInlineName']")).click();;
+		driver.findElement(By.xpath("//html/body/div[2]/div/div[2]/div/div/div/div[2]/form/div[4]/button")).click();
+		String errormessage=driver.findElement(By.xpath("//html/body/div[2]/div/div[2]/div/div/div/div[2]/form/div[1]/label")).getText();
+		
+		assertEquals(errormessage, "手机/邮箱不能为空");
+		
 		}
 
 	@After
@@ -47,3 +50,4 @@ public class LoginTurnFindpassw {
 	}
 
 }
+

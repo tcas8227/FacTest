@@ -1,4 +1,4 @@
-package com.fac.web.func.logregis.login;
+package com.fac.web.func.logregis.regist;
 
 import java.util.concurrent.TimeUnit;
 
@@ -8,8 +8,8 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-//跳转找回密码页面,测试找回页
-public class LoginTurnFindpassw {
+//密码小于6位，注册
+public class PswShort {
 	
 	private WebDriver driver;
 	private String baseUrl;
@@ -27,11 +27,14 @@ public class LoginTurnFindpassw {
 	@Test
 	public void Test()throws Exception{
 		driver.get(baseUrl);
-		driver.findElement(By.linkText("登录")).click();
-		driver.findElement(By.xpath("//button[@class='btn btn-link']")).click();
+		driver.findElement(By.linkText("注册")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//html/body/div[2]/div/div[2]/div/div/div/div[2]/form/div[2]/input")).sendKeys("11111");
+		driver.findElement(By.xpath("//html/body/div[2]/div/div[2]/div/div/div/div[2]/form/div[3]/input")).click();
+		String errormessage=driver.findElement(By.xpath("//html/body/div[2]/div/div[2]/div/div/div/div[2]/form/div[1]/label")).getText();
 		Thread.sleep(4000);
-		String title=driver.findElement(By.xpath("//html/body/div[2]/div/div[2]/div/div/div/div[1]/h4")).getText();
-		assertEquals(title, "找回密码");
+		assertEquals(errormessage, "密码长度小于6位,请重新输入");
+		
 		}
 
 	@After

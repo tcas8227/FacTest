@@ -32,7 +32,7 @@ public class RightLogin {
 		driver.findElement(By.id("username")).sendKeys("15548485220");
 		driver.findElement(By.xpath("//input[@type='password']")).sendKeys("111111");
 		driver.findElement(By.xpath("//button[@class='button-long btn btn-default']")).click();
-		Thread.sleep(4000);
+		Thread.sleep(8000);
 		String url=driver.getCurrentUrl();
 		assertEquals(url, "http://www.factube.com/selectSpace");
 		}
@@ -45,7 +45,7 @@ public class RightLogin {
 		driver.findElement(By.id("username")).sendKeys("m15548485220@163.com");
 		driver.findElement(By.xpath("//input[@type='password']")).sendKeys("111111");
 		driver.findElement(By.xpath("//button[@class='button-long btn btn-default']")).click();
-		Thread.sleep(4000);
+		Thread.sleep(8000);
 		String url=driver.getCurrentUrl();
 		assertEquals(url, "http://www.factube.com/selectSpace");
 		}
