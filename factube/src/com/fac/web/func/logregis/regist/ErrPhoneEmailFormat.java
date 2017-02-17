@@ -1,4 +1,4 @@
-package com.fac.web.func.logregis.findpsw;
+package com.fac.web.func.logregis.regist;
 
 import java.util.concurrent.TimeUnit;
 
@@ -8,8 +8,8 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-//错误格式的手机号/邮箱
-public class ErrFormat {
+//错误格式的手机号/邮箱，注册
+public class ErrPhoneEmailFormat {
 	
 	private WebDriver driver;
 	private String baseUrl;
@@ -25,13 +25,12 @@ public class ErrFormat {
 	} 
 	
 	@Test
-	public void Test()throws Exception{
+	public void TestPhone()throws Exception{
 		driver.get(baseUrl);
-		driver.findElement(By.linkText("登录")).click();
-		driver.findElement(By.xpath("//button[@class='btn btn-link']")).click();
-		Thread.sleep(4000);
+		driver.findElement(By.linkText("注册")).click();
+		Thread.sleep(2000);
 		driver.findElement(By.xpath(".//*[@id='formInlineName']")).sendKeys("2333333");
-		driver.findElement(By.xpath("//html/body/div[2]/div/div[2]/div/div/div/div[2]/form/div[2]/span/span/button")).click();
+		driver.findElement(By.xpath("//html/body/div[2]/div/div[2]/div/div/div/div[2]/form/div[4]/button")).click();
 		String errormessage=driver.findElement(By.xpath("//html/body/div[2]/div/div[2]/div/div/div/div[2]/form/div[1]/label")).getText();
 		
 		assertEquals(errormessage, "手机/邮箱格式错误");
@@ -41,11 +40,10 @@ public class ErrFormat {
 	@Test
 	public void TestEmail()throws Exception{
 		driver.get(baseUrl);
-		driver.findElement(By.linkText("登录")).click();
-		driver.findElement(By.xpath("//button[@class='btn btn-link']")).click();
-		Thread.sleep(4000);
+		driver.findElement(By.linkText("注册")).click();
+		Thread.sleep(2000);
 		driver.findElement(By.xpath(".//*[@id='formInlineName']")).sendKeys("m15548485220@.com");
-		driver.findElement(By.xpath("//html/body/div[2]/div/div[2]/div/div/div/div[2]/form/div[2]/span/span/button")).click();
+		driver.findElement(By.xpath("//html/body/div[2]/div/div[2]/div/div/div/div[2]/form/div[4]/button")).click();
 		String errormessage=driver.findElement(By.xpath("//html/body/div[2]/div/div[2]/div/div/div/div[2]/form/div[1]/label")).getText();
 		
 		assertEquals(errormessage, "手机/邮箱格式错误");
